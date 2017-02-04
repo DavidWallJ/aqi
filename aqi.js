@@ -5,15 +5,14 @@ var request = require('request');
 
 
 // receive location here and make url
-module.exports = function (callback) {
-    var url = 'https://api.waqi.info/feed/geo:24.147736;120.673648/?token=4dbb59849ccb7abaa698c6d5f5995abe3c6c5509';
+module.exports = function (lat, long, callback) {
+    // var url = 'https://api.waqi.info/feed/geo:24.147736;120.673648/?token=4dbb59849ccb7abaa698c6d5f5995abe3c6c5509';
+    var encodedLat = encodeURIComponent(lat);
+    var encodedLong = encodeURIComponent(long);
 
-    // you don't need this if you're only using lat/long
-    // encodeURIComponent(location);
+    var url = `https://api.waqi.info/feed/geo:${encodedLat};${encodedLong}/?token=4dbb59849ccb7abaa698c6d5f5995abe3c6c5509`;
 
-    // if (!location) {
-    //     return callback('No location provided.')
-    // }
+
 
     request({
         url: url,
