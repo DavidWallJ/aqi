@@ -4,17 +4,20 @@
 var request = require('request');
 var url = 'http://ipinfo.io';
 
-module.exports = function (callback) {
+module.exports = function () {
 
-    request({
-        url: url,
-        json: true
-    }, function (err, res, body) {
-        if (err) {
-            callback();
-        } else {
-            // console.log(`From location file: ${JSON.stringify(body, null, 4)}`);
-            callback(body);
-        }
+    return new Promise(function (resolve, reject) {
+        request({
+            url: url,
+            json: true
+        }, function (err, res, body) {
+            if (err) {
+                reject('Unable to guess location.');
+            } else {
+                // console.log(`From location file: ${JSON.stringify(body, null, 4)}`);
+                resolve(body);
+            }
+        });
     });
 };
+
