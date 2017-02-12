@@ -13,7 +13,7 @@ module.exports = function (callback) {
         if (err) {
             callback();
         } else {
-            console.log(`From location file: ${JSON.stringify(body, null, 4)}`);
+            // console.log(`From location file: ${JSON.stringify(body, null, 4)}`);
             callback(body);
         }
     });
